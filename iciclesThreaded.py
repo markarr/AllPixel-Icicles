@@ -61,23 +61,11 @@ def bandRandom(strip, color, wait, iterations):
 	for j in xrange(iterations):
 		# 5 random pixels
 		pixel = band[random.randint(0,23)][random.randint(0,4)]
-		pixel1 = band[random.randint(0,23)][random.randint(0,4)]
-		pixel2 = band[random.randint(0,23)][random.randint(0,4)]
-		pixel3 = band[random.randint(0,23)][random.randint(0,4)]
-		pixel4 = band[random.randint(0,23)][random.randint(0,4)]
 		strip.set(pixel, color)
-		strip.set(pixel1, color)
-		strip.set(pixel2, color)
-		strip.set(pixel3, color)
-		strip.set(pixel4, color)
 		# Show them
 		strip.update()
-		time.sleep(wait/1.5)
+		time.sleep(wait)
 		strip.set(pixel, (0,0,0))
-		strip.set(pixel1, (0,0,0))
-		strip.set(pixel2, (0,0,0))
-		strip.set(pixel3, (0,0,0))
-		strip.set(pixel4, (0,0,0))
 		# Turn them off
 		strip.update()
 		
@@ -151,7 +139,7 @@ colorWipe(strip, (127, 127, 127))
 #begin the loop
 print 'Press Ctrol-C to quit'
 while True:
-	a = threading.Thread(target=bandRandom, args=(strip, (127, 127, 127), 1, 100,))
+	a = threading.Thread(target=bandRandom, args=(strip, (127, 127, 127), 1, 10,))
 	b = threading.Thread(target=SmallIce, args=(strip, 1, 2,))
 	c = threading.Thread(target=LargeIce, args=(strip, (127, 127, 127), 1, 1,))
 	if not a or not a.is_alive():
